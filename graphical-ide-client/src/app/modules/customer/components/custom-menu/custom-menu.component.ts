@@ -27,10 +27,8 @@ export class CustomMenuComponent implements OnInit, AfterViewInit  {
 
   ngOnInit() {
     this.menuItems  = [
-      {id:0,section: ENavbarSection.TOP,name:"ZARABIAJ", callback:() => null, href:"", icon:null},
-      {id:1,section: ENavbarSection.TOP,name:"W", callback:() => null, href:"", icon:null},
-      {id:2,section: ENavbarSection.TOP,name:"INTERNECIE", callback:() => null, href:"", icon:null},
-      {id:3,section: ENavbarSection.TOP,name:"100% SCAM FREE", callback:() => null, href:"", icon:null}
+      {id:0,section: ENavbarSection.TOP,name:"DASHBOARD", callback:() => null, href:"/customer/dash", icon:null},
+      {id:1,section: ENavbarSection.TOP,name:"PROFILE", callback:() => null, href:"/customer/profile", icon:null},
     ];
   }
 

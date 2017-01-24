@@ -16,10 +16,8 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
     this.menuItems  = [
-      {id:0,section: ENavbarSection.TOP,name:"ZARABIAJ", callback:() => null, href:"", icon:null},
-      {id:1,section: ENavbarSection.TOP,name:"W", callback:() => null, href:"", icon:null},
-      {id:2,section: ENavbarSection.TOP,name:"INTERNECIE", callback:() => null, href:"", icon:null},
-      {id:3,section: ENavbarSection.TOP,name:"100% SCAM FREE", callback:() => null, href:"", icon:null}
+      {id:0,section: ENavbarSection.TOP,name:"LOGIN", callback:() => null, href:"/login", icon:null},
+      {id:1,section: ENavbarSection.TOP,name:"REGISTER", callback:() => null, href:"/register", icon:null},
     ];
   }
 
