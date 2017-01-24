@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {IProjectButton} from "../../../../sheards/interfaces/project-button.interface";
-
+declare const $:any;
 @Component({
   selector: 'app-customer-dashboard',
   templateUrl: './customer-dashboard.component.html',
@@ -10,6 +10,16 @@ export class CustomerDashboardComponent implements OnInit {
   public projectList: Array<IProjectButton>;
   constructor() {
   }
+  ngAfterViewInit():void {
+    $(document).ready(function(){
+      // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+      $('.modal').modal();
+    });
+  }
+
+  public createNewProject = (newProjectName:string)=> {
+    //TODO
+  };
 
   ngOnInit() {
     this.projectList = [

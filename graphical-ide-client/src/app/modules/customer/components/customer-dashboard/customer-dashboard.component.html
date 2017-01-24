@@ -1,4 +1,30 @@
 <app-custom-menu></app-custom-menu>
+
+<!-- NEW PROJECT -->
+<!-- Modal Trigger -->
+<button data-target="modal1" class="btn">New Project</button>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <h4>Create New Project</h4>
+    <div class="row">
+      <div class="col s4 offset-s4">
+        <form  #f="ngForm" >
+          <div class="input-field col s12">
+            <input placeholder="name" id="name" type="text" name="name" [(ngModel)]="newProjectName">
+          </div>
+          <div class="col s12">
+            <button class="col s6 offset-s3 waves-effect waves-light btn" (click)="createNewProject(newProjectName)" type="submit">CREATE</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--              -->
+
+
 <div class="row">
   <div class="col s3" *ngFor="let project of projectList">
     <app-project-button [projectData]="project"></app-project-button>
