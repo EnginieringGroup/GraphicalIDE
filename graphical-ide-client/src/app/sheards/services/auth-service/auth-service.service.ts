@@ -37,4 +37,5 @@ export class AuthServiceService extends RESTClient {
   public register(@Body user: IRegisterUserData): Observable<IUserData> {
     return null;
   }
+  
 }

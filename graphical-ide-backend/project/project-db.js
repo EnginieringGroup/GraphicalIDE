@@ -33,10 +33,11 @@ const projectService = function () {
         return result;
     };
     
-    const createProject = function (newProject) {
+    const createProject = function (newProject, userId) {
         let projectOB = Object.assign(ProjectModel,newProject);
         projectOB.id = seqDB().getSequence('projectID-seq');
         projectOB.timestamp = new Date();
+        projectOB.userId = userId;
         let sync = true;
         let result = null;
         projectDB.put(projectOB, function (err) {
@@ -49,5 +50,10 @@ const projectService = function () {
         }
         return result;
     };
+
+    return {
+        createProject: createProject,
+        getProjectById: getProjectById
+    };
 };
-module.exportsa = projectService;
+module.exports = projectService;

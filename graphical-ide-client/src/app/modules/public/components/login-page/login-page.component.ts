@@ -10,8 +10,8 @@ import {SessionStorageService} from "ng2-webstorage";
 export class LoginPageComponent implements OnInit {
 
   constructor(private AuthServiceService: AuthServiceService,
-              private SessionStorageService: SessionStorageService,
-              ) {
+              private SessionStorageService: SessionStorageService
+              ){
   }
 
   ngOnInit() {

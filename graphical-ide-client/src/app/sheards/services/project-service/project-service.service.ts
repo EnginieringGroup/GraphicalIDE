@@ -5,10 +5,12 @@ import {Http, Request, Response} from '@angular/http';
 import {Observable} from "rxjs/Rx";
 import {ILoginUserData} from "../../interfaces/register-use-data.interface";
 import {IProjectModel} from "../../interfaces/project-model.interface";
+import {SessionStorageService} from "ng2-webstorage/dist/app";
 @BaseUrl(new ApiUrlPrefix().getHostURL())
 @DefaultHeaders({
   'Accept': 'application/json',
-  'Content-Type': 'application/json'
+  'Content-Type': 'application/json',
+  'Token': new SessionStorageService().retrieve("token")
 })
 @Injectable()
 export class ProjectServiceService extends RESTClient{
@@ -26,12 +28,12 @@ export class ProjectServiceService extends RESTClient{
     return super.requestInterceptor(req);
   }
 
-  @POST('/api/customer/createProject')
+  @POST('/customer/createProject')
   public createNewProject(@Body projectData: IProjectModel): Observable<IProjectModel> {
     return null;
   };
 
-  @GET('/api/customer/getProject/')
+  @GET('/customer/getProject/')
   @Produces<IProjectModel>()
   public getProjectById(@Query('id') id?: number): Observable<IProjectModel> {
     return null;
