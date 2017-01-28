@@ -10,7 +10,7 @@ const ProjectService = require("./project/project-db");
 var allowCrossDomain = function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS, HEAD');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Engaged-Auth-Token');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Engaged-Auth-Token, Token');
     next();
 };
 app.use(allowCrossDomain);
@@ -33,12 +33,22 @@ app.post('/api/home/login', function (req, res) {
 
 app.post('/api/customer/createProject', function (req, res) {
     console.log("bije", req.body);
-    ProjectService().createProject(req.body);
+    var token = req.headers['token'];
+    console.log("headers",req.headers);
+    var user = UserService().getUserByToken(token);
+    ProjectService().createProject(req.body, user.id);
     res.send(req.body);
 });
+
 app.get('/api/customer/getProject/:id', function (req, res) {
     var id = req.params.id;
     let result = ProjectService().getProjectById(id);
+    res.send(result);
+});
+
+app.post('/api/user/getUserByToken', function (req, res) {
+    var token= req.params.token;
+    let result = UserService().getUserByToken(token);
     res.send(result);
 });
 

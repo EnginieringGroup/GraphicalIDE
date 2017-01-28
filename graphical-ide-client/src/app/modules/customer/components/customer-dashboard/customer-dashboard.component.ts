@@ -1,15 +1,19 @@
 import {Component, OnInit} from "@angular/core";
 import {IProjectButton} from "../../../../sheards/interfaces/project-button.interface";
+import {AuthServiceService} from "../../../../sheards/services/auth-service/auth-service.service";
+import {SessionStorageService} from "ng2-webstorage/dist/app";
+import {ProjectServiceService} from "../../../../sheards/services/project-service/project-service.service";
+import {IProjectModel} from "../../../../sheards/interfaces/project-model.interface";
 declare const $:any;
 @Component({
   selector: 'app-customer-dashboard',
   templateUrl: './customer-dashboard.component.html',
-  styleUrls: ['./customer-dashboard.component.css']
+  styleUrls: ['./customer-dashboard.component.css'],
+  providers: [ProjectServiceService]
 })
 export class CustomerDashboardComponent implements OnInit {
   public projectList: Array<IProjectButton>;
-  constructor() {
-  }
+  constructor(private projectService:ProjectServiceService){}
   ngAfterViewInit():void {
     $(document).ready(function(){
       // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
@@ -18,7 +22,16 @@ export class CustomerDashboardComponent implements OnInit {
   }
 
   public createNewProject = (newProjectName:string)=> {
-    //TODO
+
+    let newProject:IProjectModel = <any>{};
+    newProject.name = newProjectName;
+
+    console.log('test');
+    this.projectService.createNewProject(newProject).subscribe(result=>{
+      if(result.error){
+        return;
+      }
+    });
   };
 
   ngOnInit() {
